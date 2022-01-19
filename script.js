@@ -129,7 +129,7 @@ slide.addEventListener("click", function (e) {
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   //main.querySelector(".message").classList.remove("hidden");
-  console.log(error);
+  //console.log(error);
   //console.log(a);
   clear();
   getJson();
