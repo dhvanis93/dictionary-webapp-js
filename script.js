@@ -5,6 +5,8 @@ const main = document.querySelector(".slider");
 const slide = document.querySelector(".slide");
 const error = document.querySelector(".error");
 const list = document.querySelector(".list");
+//const spinner = document.querySelector(".spinner");
+
 let partOfSpeech;
 let query = "";
 let meaningsData;
@@ -53,13 +55,17 @@ const createMain = function (data, index = 0) {
   //console.log(html);
   if (slide) slide.innerHTML = "";
   slide.insertAdjacentHTML("afterbegin", html);
-  document.querySelector(".message").classList.add("hidden");
 };
 const clear = function () {
   query = "";
   if (slide) slide.innerHTML = "";
   if (error) error.innerHTML = "";
   if (list) list.innerHTML = "";
+  document.querySelector(".message").classList.add("hidden");
+  // const html = `
+  // <div class="spinner"></div>`;
+  // main.insertAdjacentHTML("afterbegin", html);
+  document.querySelector(".spinner").classList.remove("hidden");
 };
 const getJson = async function () {
   try {
@@ -68,7 +74,7 @@ const getJson = async function () {
     input.blur();
     //console.log(query);
     const res = await fetch(`${API_URL}${query}`);
-    //console.log(res);
+    console.log(res);
     const data = await res.json();
     console.log(data);
 
@@ -86,6 +92,7 @@ const getJson = async function () {
     });
     console.log(listHtml);
     meaningsData = finalData.meanings;
+    document.querySelector(".spinner").classList.add("hidden");
     createMain(finalData.meanings);
 
     list.insertAdjacentHTML("afterbegin", listHtml);
@@ -96,7 +103,7 @@ const getJson = async function () {
     <h1>ERROR!</h1>
     <p>${err.message}</p>
     `;
-    document.querySelector(".message").classList.add("hidden");
+    document.querySelector(".spinner").classList.add("hidden");
     error.insertAdjacentHTML("afterbegin", html);
     //main.querySelector(".error").querySelector("p").textContent = err.message;
   }
@@ -123,7 +130,7 @@ slide.addEventListener("click", function (e) {
   console.log(item.textContent);
   clear();
   query = item.textContent;
-  getJson(item.textContent);
+  getJson();
 });
 
 form.addEventListener("submit", function (e) {
