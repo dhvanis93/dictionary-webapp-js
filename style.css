@@ -130,6 +130,7 @@ body {
   font-weight: 600;
   align-self: center;
   margin: 2rem;
+  cursor: pointer;
 }
 .item--active {
   background-color: rgb(99, 137, 241);
