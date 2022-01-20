@@ -15,7 +15,7 @@ let meaningsData;
 //console.log(document.querySelector(".message"));
 
 const createMain = function (data, index = 0) {
-  console.log(data);
+  //console.log(data);
   let synonyms = data[index].definitions[0].synonyms;
   let antonyms = data[index].definitions[0].antonyms;
 
@@ -28,7 +28,7 @@ const createMain = function (data, index = 0) {
         sys += `<span class="item" data-index=${i}>${el}</span><br><br>`;
       else sys += `<span class="item" data-index=${i}>${el}</span>`;
     });
-    console.log(sys);
+    //console.log(sys);
     synonyms = `<p><b>Synonyms:</b><br><br>${sys}</p><br>`;
   }
 
@@ -90,7 +90,7 @@ const getJson = async function () {
         ? (listHtml += `<p class="item item--active" data-index=${i}>${word.partOfSpeech}</p>`)
         : (listHtml += `<p class="item" data-index=${i}>${word.partOfSpeech}</p>`);
     });
-    console.log(listHtml);
+    //console.log(listHtml);
     meaningsData = finalData.meanings;
     document.querySelector(".spinner").classList.add("hidden");
     createMain(finalData.meanings);
@@ -127,7 +127,7 @@ list.addEventListener("click", function (e) {
 slide.addEventListener("click", function (e) {
   const item = e.target.closest(".item");
   if (!item) return;
-  console.log(item.textContent);
+  //console.log(item.textContent);
   clear();
   query = item.textContent;
   getJson();
